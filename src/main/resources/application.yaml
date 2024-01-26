@@ -1,10 +1,10 @@
 spring :
   datasource:
-    url: jdbc:maria://localhost:3306/school-management-system
+    url: jdbc:mariadb://localhost:3306/school-management-system
     username: root
     password:
 
   jpa:
     generate-ddl: true
     hibernate:
-      ddl-auto: create
+      ddl-auto: update
