@@ -16,7 +16,7 @@ import lombok.NoArgsConstructor;
         name = "student" ,
         uniqueConstraints = @UniqueConstraint(
             name = "email_unique",
-            columnNames = "student-email"
+            columnNames = "studentEmail"
         )
 )
 public class Student {
@@ -24,20 +24,26 @@ public class Student {
     @Id
     @GeneratedValue(
             strategy = GenerationType.SEQUENCE,
-            generator = "student_sequence"
+            generator = "studentSequence"
     )
     @SequenceGenerator(
-            name = "student_sequence",
-            sequenceName = "student_sequence",
+            name = "studentSequence",
+            sequenceName = "studentSequence",
             allocationSize = 1
     )
-    @Column (name = "student-id")
+    @Column (name = "studentId")
     private long studentId;
-    @Column (name = "student-firstName")
+    @Column (name = "studentFirstName")
     private String studentFistName;
-    @Column (name = "student-lastName")
+    @Column (name = "studentLastName")
     private String studentLastName;
-    @Column (name = "student-email" ,nullable = false, unique = true)
+    @Column (name = "studentEmail" ,nullable = false, unique = true)
     private String studentEmail;
+    @Column (name = "guardianName")
+    private String guardianName;
+    @Column (name = "guardianEmail")
+    private String guardianEmail;
+    @Column (name = "guardianPhoneNumber")
+    private String guardianPhoneNumber;
 
 }
