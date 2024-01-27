@@ -39,11 +39,7 @@ public class Student {
     private String studentLastName;
     @Column (name = "studentEmail" ,nullable = false, unique = true)
     private String studentEmail;
-    @Column (name = "guardianName")
-    private String guardianName;
-    @Column (name = "guardianEmail")
-    private String guardianEmail;
-    @Column (name = "guardianPhoneNumber")
-    private String guardianPhoneNumber;
 
+    @Embedded
+    private Guardian guardian;
 }
