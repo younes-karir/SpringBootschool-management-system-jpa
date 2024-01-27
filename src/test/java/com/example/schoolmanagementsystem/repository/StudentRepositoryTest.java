@@ -31,6 +31,9 @@ class StudentRepositoryTest {
     }
 
 
+
+
+
     @Test
     public void getStudent(){
         List<Student> data = studentRepository.findAll();
