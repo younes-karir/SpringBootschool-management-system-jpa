@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.security.Guard;
 import java.util.List;
-
-import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 class StudentRepositoryTest {
@@ -35,15 +34,15 @@ class StudentRepositoryTest {
     @Test
     public void createStudentWithGuardian(){
         Guardian guardian  = Guardian.builder()
-                .name("Ahmed AHN")
-                .email("sup@gmail.com")
-                .phoneNumber("05673213123")
+                .name("Salah AHN")
+                .email("salah@gmail.com")
+                .phoneNumber("045467567")
                 .build();
 
         Student student = Student.builder()
-                .studentFistName("younes")
-                .studentLastName("Karir")
-                .studentEmail("youneskarir@gmail.com")
+                .studentFistName("yousra")
+                .studentLastName("hatim")
+                .studentEmail("yousra@gmail.com")
                 .guardian(guardian)
                 .build();
 
@@ -53,13 +52,57 @@ class StudentRepositoryTest {
 
 
     @Test
-    public void getStudent(){
+    public void getAllStudent(){
         List<Student> data = studentRepository.findAll();
 
         for (Student item: data) {
             System.out.println(item.toString());
         }
     }
+
+
+    @Test
+    public void getStudent(){
+        List<Student> data  = studentRepository.findByStudentFistName("younes");
+        for (Student item: data) {
+            System.out.println(item.toString());
+        }
+
+    }
+
+
+    @Test
+    public void getStudentContain(){
+        List<Student> data  = studentRepository.findByStudentFistNameContaining("you");
+        System.out.println("-------------------------- testing ---------------------------\n");
+        for (Student item: data) {
+            System.out.println(item.toString());
+        }
+        System.out.println("-------------------------- testing ---------------------------\n");
+
+    }
+
+
+
+
+    @Test
+    public void getStudentsByGuardian(){
+        Guardian guardian  = Guardian.builder()
+                .name("Ahmed AHN")
+                .phoneNumber("05673213123")
+                .email("sup@gmail.com")
+                .build();
+
+        List<Student> data = studentRepository.findAllByGuardian(guardian);
+
+        System.out.println("-------------------------- testing ---------------------------\n");
+        for (Student item: data) {
+            System.out.println(item.toString());
+        }
+        System.out.println("-------------------------- testing ---------------------------\n");
+
+    }
+
 
 
 }
