@@ -39,7 +39,6 @@ public class Student {
     private String studentLastName;
     @Column (name = "studentEmail" ,nullable = false, unique = true)
     private String studentEmail;
-
     @Embedded
     private Guardian guardian;
 }
