@@ -16,6 +16,7 @@ class StudentRepositoryTest {
     private StudentRepository studentRepository;
 
 
+
     @Test
     public void insertStudent(){
         Student item = Student.builder()
@@ -122,6 +123,18 @@ class StudentRepositoryTest {
         Student student = studentRepository.getStudentByStudentEmailNative("youneskarir@gmail.com");
         System.out.println("testing : "+ student.toString());
     }
+
+
+    @Test
+    public void updateStudent(){
+        int result = studentRepository.updateStudentNameByEmailId("mohamed", "karir" , "hamid@gmail.com");
+        System.out.println("----------->"+result);
+    }
+
+
+
+
+
 
 
 }

@@ -3,15 +3,19 @@ package com.example.schoolmanagementsystem.repository;
 import com.example.schoolmanagementsystem.model.Guardian;
 import com.example.schoolmanagementsystem.model.Student;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.security.Guard;
 import java.util.List;
 
 @Repository
 public interface StudentRepository extends JpaRepository<Student, Long> {
+
+
 
     List<Student> findByStudentFistName(String firstName);
 
@@ -48,12 +52,28 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     //get student name by email
 
     @Query(
-            value = "select * from student s where s.student_email = :studentEmail ",
+            value = "select * from student s where s.student_email = :email ",
             nativeQuery = true
     )
     Student getStudentByStudentEmailNativeNamedParam(
-            @Param("studentEmail") String email
+            @Param("email") String email
     );
+
+
+
+    // update the data
+    @Modifying
+    @Transactional
+    @Query(value =
+            "update student s set s.student_first_name= :first, s.student_last_name= :last  where  s.student_email = :email"
+            ,nativeQuery = true)
+    int  updateStudentNameByEmailId(
+            @Param("first") String firstName,
+            @Param("last") String lastName,
+            @Param("email") String emailId
+    );
+
+
 
 
 
