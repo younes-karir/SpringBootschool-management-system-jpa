@@ -2,16 +2,14 @@ package com.example.schoolmanagementsystem.model;
 
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Builder
+@ToString(exclude = "course")
 @Table(name = "course-material")
 public class CourseMaterial {
     @Id
@@ -30,11 +28,13 @@ public class CourseMaterial {
     @Column(name = "courseMaterialUrl")
     private String url;
 
-    @OneToOne
+    @OneToOne(
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
     @JoinColumn(
             name = "courseId",
             referencedColumnName = "courseId"
-
     )
     private Course course;
 
