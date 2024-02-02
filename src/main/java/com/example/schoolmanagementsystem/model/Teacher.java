@@ -7,6 +7,8 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @Entity
 @Data
 @AllArgsConstructor
@@ -24,9 +26,19 @@ public class Teacher {
             allocationSize = 1
     )
     @Column(name = "teacherId")
-    private Long id;
+    private Long teacherId;
     @Column(name = "teacherFisrtName")
     private String firstName;
     @Column(name = "teacherLastName")
     private String lastName;
+
+
+    @OneToMany(
+        cascade = CascadeType.ALL
+    )
+    @JoinColumn(
+            name = "teacherId",
+            referencedColumnName = "teacherId"
+    )
+    private List<Course> courses;
 }
