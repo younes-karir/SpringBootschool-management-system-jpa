@@ -19,10 +19,13 @@ class CourseRepositoryTest {
 
 
 
+
+
     @Test
     public void getAllCourses(){
         List<Course> data = courseRepository.findAll();
-        System.out.println("courses = " + data);
+        System.out.println("courses = " + data); // after adding the courseMaterial inside course
+
     }
 
 
