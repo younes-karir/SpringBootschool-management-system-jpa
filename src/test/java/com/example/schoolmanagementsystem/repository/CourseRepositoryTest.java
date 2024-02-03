@@ -1,6 +1,8 @@
 package com.example.schoolmanagementsystem.repository;
 
 import com.example.schoolmanagementsystem.model.Course;
+import com.example.schoolmanagementsystem.model.CourseMaterial;
+import com.example.schoolmanagementsystem.model.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -18,6 +20,21 @@ class CourseRepositoryTest {
     CourseRepository courseRepository;
 
 
+    @Test
+    public void createCourse(){
+        Course course = Course.builder()
+                .courseTitle("JAVA")
+                .credit(10)
+                .teacher(Teacher.builder()
+                        .firstName("younes")
+                        .lastName("karir")
+                        .build())
+                .build();
+
+        courseRepository.save(course);
+
+
+    }
 
 
 
