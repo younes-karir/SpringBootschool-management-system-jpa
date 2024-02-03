@@ -32,7 +32,7 @@ public class Teacher {
     @Column(name = "teacherLastName")
     private String lastName;
 
-
+/*
     @OneToMany(
         cascade = CascadeType.ALL
     )
@@ -40,5 +40,10 @@ public class Teacher {
             name = "teacherId",
             referencedColumnName = "teacherId"
     )
-    private List<Course> courses;
+    private List<Course> courses
+
+ */
+
+
+
 }
