@@ -6,6 +6,7 @@ import com.example.schoolmanagementsystem.model.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
@@ -94,6 +95,22 @@ class CourseRepositoryTest {
         data.forEach(System.out::println);
 
 
+    }
+
+
+
+    @Test
+    public void printFindByCourseTitleContaining(){
+        Pageable pageable = PageRequest.of(
+                0,2,
+                Sort.by(Sort.Order.asc("courseTitle"))
+        );
+
+        Page<Course> data = courseRepository.findAllByCourseTitleContainingIgnoreCase("a",pageable);
+        List<Course> courses = data.getContent();
+
+
+        courses.forEach(System.out::println);
     }
 
 
