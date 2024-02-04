@@ -67,24 +67,5 @@ class CourseRepositoryTest {
     }
 
 
-    @Test
-    public void getAllSortedByTitle () {
-        Pageable SortByTitle = PageRequest.of(
-                1, 4,
-                Sort.by(Sort.Order.asc("courseTitle"))
-        );
 
-
-
-        Long totalElements =  courseRepository.findAll(SortByTitle).getTotalElements();
-        int totalPages =  courseRepository.findAll(SortByTitle).getTotalPages();
-
-        List<Course> data = courseRepository.findAll(SortByTitle).getContent();
-        System.out.println("total elements = " + totalElements);
-        System.out.println("total pages = " + totalPages);
-
-        data.forEach(System.out::println);
-
-
-    }
 }
