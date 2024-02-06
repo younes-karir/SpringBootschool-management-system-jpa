@@ -2,6 +2,7 @@ package com.example.schoolmanagementsystem.repository;
 
 import com.example.schoolmanagementsystem.model.Course;
 import com.example.schoolmanagementsystem.model.CourseMaterial;
+import com.example.schoolmanagementsystem.model.Student;
 import com.example.schoolmanagementsystem.model.Teacher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -113,6 +114,34 @@ class CourseRepositoryTest {
         courses.forEach(System.out::println);
     }
 
+
+
+    @Test
+    public void saveCourseWithStudentAndTeacher(){
+        Teacher teacher = Teacher.builder()
+                .lastName("Ahmedi")
+                .firstName("Aissa")
+                .build();
+
+        Student student = Student.builder()
+                .studentFistName("samira")
+                .studentLastName("ayami")
+                .studentEmail("samira@gmail.com")
+                .build();
+
+
+        Course course = Course.builder()
+                .teacher(teacher)
+                .courseTitle("Ai")
+                .credit(10)
+                .build();
+
+        course.addStudent(student);
+
+
+
+        courseRepository.save(course);
+    }
 
 
 }
