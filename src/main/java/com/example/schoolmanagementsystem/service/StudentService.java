@@ -13,5 +13,7 @@ public interface StudentService {
     String createStudent(Student student);
     List<Student> getAllStudent();
 
+    Student getStudent(Long id);
+
 
 }
