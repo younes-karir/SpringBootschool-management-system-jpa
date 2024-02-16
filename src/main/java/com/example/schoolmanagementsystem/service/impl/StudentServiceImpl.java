@@ -1,5 +1,7 @@
 package com.example.schoolmanagementsystem.service.impl;
 
+import com.example.schoolmanagementsystem.dto.StudentRequest;
+import com.example.schoolmanagementsystem.model.Guardian;
 import com.example.schoolmanagementsystem.model.Student;
 import com.example.schoolmanagementsystem.repository.StudentRepository;
 import com.example.schoolmanagementsystem.service.StudentService;
@@ -16,9 +18,18 @@ public class StudentServiceImpl  implements StudentService {
     StudentRepository studentRepository;
 
     @Override
-    public String createStudent(Student student) {
-        studentRepository.save(student);
-        return "Student created with success";
+    public Student createStudent(StudentRequest studentRequest) {
+        Student student = Student.builder()
+                .studentEmail(studentRequest.getStudentEmail())
+                .studentLastName(studentRequest.getStudentLastName())
+                .studentFistName(studentRequest.getStudentFistName())
+                .guardian(Guardian.builder()
+                        .email(studentRequest.getGuardian().getEmail())
+                        .name(studentRequest.getGuardian().getName())
+                        .phoneNumber(studentRequest.getGuardian().getPhoneNumber())
+                        .build())
+                .build();
+        return  studentRepository.save(student);
     }
 
     @Override
