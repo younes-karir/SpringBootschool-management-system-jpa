@@ -1,6 +1,7 @@
 package com.example.schoolmanagementsystem.service.impl;
 
 import com.example.schoolmanagementsystem.dto.StudentRequest;
+import com.example.schoolmanagementsystem.model.Course;
 import com.example.schoolmanagementsystem.model.Guardian;
 import com.example.schoolmanagementsystem.model.Student;
 import com.example.schoolmanagementsystem.repository.StudentRepository;
@@ -33,6 +34,29 @@ public class StudentServiceImpl  implements StudentService {
     }
 
     @Override
+    public Student updateStudent(StudentRequest studentRequest,Long id) {
+        Student student = Student.builder()
+                .studentId(id)
+                .studentEmail(studentRequest.getStudentEmail())
+                .studentLastName(studentRequest.getStudentLastName())
+                .studentFistName(studentRequest.getStudentFistName())
+                .guardian(Guardian.builder()
+                        .email(studentRequest.getGuardian().getEmail())
+                        .name(studentRequest.getGuardian().getName())
+                        .phoneNumber(studentRequest.getGuardian().getPhoneNumber())
+                        .build())
+                .build();
+        return studentRepository.save(student);
+    }
+
+    @Override
+    public Student removeStudent(Long id) {
+        Student student = studentRepository.findById(id).get();
+        studentRepository.delete(student);
+        return student;
+    }
+
+    @Override
     public List<Student> getAllStudent() {
         return studentRepository.findAll();
     }
@@ -41,5 +65,6 @@ public class StudentServiceImpl  implements StudentService {
     public Student getStudent(Long id) {
         return studentRepository.findById(id).get();
     }
+
 
 }
