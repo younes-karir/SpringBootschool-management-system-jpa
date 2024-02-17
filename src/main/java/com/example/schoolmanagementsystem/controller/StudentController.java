@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/student")
+@RequestMapping("/students")
 @AllArgsConstructor
 public class StudentController {
 
@@ -40,13 +40,48 @@ public class StudentController {
 
     @PostMapping
     public ResponseEntity<Object> createStudent(@RequestBody @Valid StudentRequest student){
-        studentService.createStudent(student);
          return ResponseHandler.responseBuilder(
                 "requested student details are given here ",
                 HttpStatus.OK,
                 studentService.createStudent(student)
         );
     }
+
+
+    @PutMapping("{id}")
+    public ResponseEntity<Object> updateStudent(@RequestBody @Valid StudentRequest student,@PathVariable Long id){
+        return ResponseHandler.responseBuilder(
+                "student updated",
+                HttpStatus.OK,
+                studentService.updateStudent(student,id)
+        );
+    }
+
+
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Object> removeStudent(@PathVariable Long id){
+
+
+        return ResponseHandler.responseBuilder(
+                "student removed",
+                HttpStatus.OK,
+                studentService.removeStudent(id)
+        );
+    }
+
+
+/*
+    @GetMapping("{id}/courses")
+    public ResponseEntity<Object> getStudentCourses(@PathVariable Long id){
+        return ResponseHandler.responseBuilder(
+                "list of courses enrolled by student " + id,
+                HttpStatus.OK,
+                studentService.getAllCourses(id)
+        );
+    }
+
+ */
 
 
 
