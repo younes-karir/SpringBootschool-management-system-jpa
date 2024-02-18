@@ -23,7 +23,6 @@ public interface StudentRepository extends JpaRepository<Student, Long> {
     List<Student> findAllByGuardian(Guardian guardian);
 
 
-
     // creating custom queries JPQL
 
 
