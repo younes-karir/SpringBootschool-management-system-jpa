@@ -2,6 +2,7 @@ package com.example.schoolmanagementsystem.model;
 
 
 import jakarta.persistence.*;
+import jakarta.validation.Constraint;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -14,6 +15,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@Table(uniqueConstraints = @UniqueConstraint(
+        name = "emailUnique",
+        columnNames = "teacherEmail"
+))
 public class Teacher {
     @Id
     @GeneratedValue(
@@ -31,6 +36,8 @@ public class Teacher {
     private String firstName;
     @Column(name = "teacherLastName")
     private String lastName;
+    @Column(name = "teacherEmail")
+    private String email;
 
 /*
     @OneToMany(
