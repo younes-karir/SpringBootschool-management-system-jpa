@@ -63,6 +63,7 @@ public class StudentServiceImpl  implements StudentService {
 
     @Override
     public Student removeStudent(Long id) {
+        if(studentRepository.findById(id).isEmpty()) throw new ElementNotFoundException("student not found");
         Student student = studentRepository.findById(id).get();
         studentRepository.delete(student);
         return student;

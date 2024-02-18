@@ -41,7 +41,7 @@ public class StudentController {
     @PostMapping
     public ResponseEntity<Object> createStudent(@RequestBody @Valid StudentRequest student){
          return ResponseHandler.responseBuilder(
-                "requested student details are given here ",
+                "student details",
                 HttpStatus.OK,
                 studentService.createStudent(student)
         );
@@ -71,17 +71,7 @@ public class StudentController {
     }
 
 
-/*
-    @GetMapping("{id}/courses")
-    public ResponseEntity<Object> getStudentCourses(@PathVariable Long id){
-        return ResponseHandler.responseBuilder(
-                "list of courses enrolled by student " + id,
-                HttpStatus.OK,
-                studentService.getAllCourses(id)
-        );
-    }
 
- */
 
 
 
