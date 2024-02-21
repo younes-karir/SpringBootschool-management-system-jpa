@@ -42,7 +42,7 @@ public class StudentController {
     public ResponseEntity<Object> createStudent(@RequestBody @Valid StudentRequest student){
          return ResponseHandler.responseBuilder(
                 "student details",
-                HttpStatus.OK,
+                HttpStatus.CREATED,
                 studentService.createStudent(student)
         );
     }
