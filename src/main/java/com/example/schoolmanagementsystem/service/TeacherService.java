@@ -10,4 +10,6 @@ public interface TeacherService {
     Teacher createTeacher(TeacherRequest teacherRequest);
     List<Teacher> getAll();
     Teacher getTeacher(Long id);
+    Teacher updateTeacher(Long id,TeacherRequest teacherRequest);
+    Teacher remove(Long id);
 }

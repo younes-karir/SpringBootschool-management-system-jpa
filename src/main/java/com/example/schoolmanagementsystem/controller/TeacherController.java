@@ -25,7 +25,7 @@ public class TeacherController {
     public ResponseEntity<Object> createTeacher(@RequestBody  @Valid  TeacherRequest teacherRequest){
         return ResponseHandler.responseBuilder(
                 "teacher created",
-                HttpStatus.OK,
+                HttpStatus.CREATED,
                 teacherService.createTeacher(teacherRequest)
         );
     }
@@ -47,6 +47,25 @@ public class TeacherController {
                 "teacher details",
                 HttpStatus.OK,
                 teacherService.getTeacher(id)
+        );
+    }
+
+
+    @PutMapping("{id}")
+    public ResponseEntity<Object> updateTeacher(@PathVariable Long id,@RequestBody @Valid TeacherRequest teacherRequest){
+        return  ResponseHandler.responseBuilder(
+                "teacher updated",
+                HttpStatus.OK,
+                teacherService.updateTeacher(id,teacherRequest)
+        );
+    }
+
+    @DeleteMapping("{id}")
+    public ResponseEntity<Object> deleteTeacher(@PathVariable Long id){
+        return ResponseHandler.responseBuilder(
+                "teacher removed",
+                HttpStatus.OK,
+                teacherService.remove(id)
         );
     }
 

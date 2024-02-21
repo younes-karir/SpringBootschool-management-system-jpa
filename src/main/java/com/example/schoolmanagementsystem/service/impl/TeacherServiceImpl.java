@@ -41,4 +41,23 @@ public class TeacherServiceImpl implements TeacherService {
             throw new ElementNotFoundException("teacher not found");
         return teacherRepository.findById(id).get();
     }
+
+    @Override
+    public Teacher updateTeacher(Long id, TeacherRequest teacherRequest) {
+        Teacher teacher = Teacher.builder()
+                .teacherId(id)
+                .email(teacherRequest.getEmail())
+                .lastName(teacherRequest.getLastName())
+                .firstName(teacherRequest.getFirstName())
+                .build();
+        return teacherRepository.save(teacher);
+    }
+
+    @Override
+    public Teacher remove(Long id) {
+        if(teacherRepository.findById(id).isEmpty()) throw new ElementNotFoundException("teacher not found");
+        Teacher teacher = teacherRepository.findById(id).get();
+        teacherRepository.delete(teacher);
+        return teacher;
+    }
 }
