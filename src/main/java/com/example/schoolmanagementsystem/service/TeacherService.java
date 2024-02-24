@@ -3,7 +3,7 @@ package com.example.schoolmanagementsystem.service;
 import com.example.schoolmanagementsystem.dto.TeacherRequest;
 import com.example.schoolmanagementsystem.model.Teacher;
 
-import java.util.List;
+import java.util.*;
 
 public interface TeacherService {
 
